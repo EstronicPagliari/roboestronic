@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$/bt_follow" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/detect_objects" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/following" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ldlidar" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/leg_tracker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/root3" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ubiquity_motor" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ur_object_tracking" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ur_vision_msgs" vcs="Git" />
+  </component>
+</project>

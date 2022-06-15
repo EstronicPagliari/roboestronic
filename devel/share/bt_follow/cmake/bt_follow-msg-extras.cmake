@@ -1,0 +1,2 @@
+set(bt_follow_MESSAGE_FILES "/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowAction.msg;/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowActionGoal.msg;/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowActionResult.msg;/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowActionFeedback.msg;/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowGoal.msg;/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowResult.msg;/home/ubuntu/catkin_ws/devel/share/bt_follow/msg/FollowFeedback.msg")
+set(bt_follow_SERVICE_FILES "")

@@ -1,0 +1,42 @@
+<launch>
+
+    <!-- topics -->
+    <arg name="input_image_topic" default="/raspicam_node/image/compressed"/>           <!-- image topic we subscribe to -->
+    <arg name="input_image_info_topic" default="/raspicam_node/camera_info"/>           <!-- image info topic we subscribe to -->
+    <arg name="output_image_topic" default="/detect_objects/detection_img/compressed"/> <!-- image topic we publish to -->
+    <arg name="output_bounding_box_topic" default="/detect_objects/detection_array"/>   <!-- Detection2DArray topic we publish to -->
+    <!-- paths and files -->
+    <arg name="model_dir" default="$(find detect_objects)/model"/> <!-- path to dir containing model files, labels, etc. -->
+    <arg name="default_model" default="default_model.tflite"/>  <!-- name of TFLite model file -->
+    <arg name="tpu_model" default="tpu_model.tflite"/>          <!-- name of TFLite model file used for TPU -->
+    <arg name="labels" default="labels.txt"/>                   <!-- name of class labels file -->
+    <arg name="selected_classes" default="person"/>             <!-- if suffix .txt: name of file defining which objects to detect -->
+                                                                <!-- if no suffix : name of objects to detect. delimiter = ","-->
+                                                                <!-- if empty : detect all objects-->
+    <!-- model parameters -->
+    <arg name="model_resolution" default="320x320"/>  <!-- input image dimensions required by the model -->
+    <arg name="tpu" default="True"/>                 <!-- use Coral TPU "false" or "true" -->
+    <arg name="cores" default="4"/>                   <!-- number of cores used by TFLite -->
+    <arg name="detection_threshold" default="0.6"/>   <!-- detection threshold value (from 0 to 1) -->
+
+    <!-- Run detect_objects -->
+    <node name="detect_objects" pkg="detect_objects" type="detect_objects_node.py" output="screen">
+        <!-- topics -->
+        <param name="input_image_topic" value="$(arg input_image_topic)"/>
+        <param name="output_image_topic" value="$(arg output_image_topic)"/>
+        <param name="output_bounding_box_topic" value="$(arg output_bounding_box_topic)"/>
+        <!-- paths and files -->
+        <param name="model_dir" value="$(arg model_dir)"/>
+        <param name="default_model" value="$(arg default_model)"/>
+        <param name="tpu_model" value="$(arg tpu_model)"/>
+        <param name="labels" value="$(arg labels)"/>
+        <param name="selected_classes" value="$(arg selected_classes)"/>
+        <!-- model parameters -->
+        <param name="model_resolution" value="$(arg model_resolution)"/>
+        <param name="input_image_info_topic" value="$(arg input_image_info_topic)"/>
+        <param name="tpu" value="$(arg tpu)"/>
+        <param name="cores" value="$(arg cores)"/>
+        <param name="detection_threshold" value="$(arg detection_threshold)"/>
+    </node>
+
+</launch>

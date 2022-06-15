@@ -1,0 +1,2 @@
+bt_follow:detect_objects:following:ldlidar:leg_tracker:obstacle_avoidance:ubiquity_motor:ur_object_tracking:ur_vision_msgs
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/catkin_ws/install -G Unix Makefiles

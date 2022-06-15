@@ -1,0 +1,33 @@
+<launch>
+     <arg name="input_image_info_topic" default="/raspicam_node/camera_info"/>
+     <arg name="angular_pid" default="0.3, 0.0, 0.0"/>
+     <arg name="deceleration_pid" default="0.3, 0.05, 0.0"/>
+     <arg name="max_speed" default="0.4"/>
+     <arg name="acceleration_step" default="0.05"/>
+     <arg name="deceleration_step" default="0.15"/>
+     <arg name="max_time_without_object" default="7"/>
+     <arg name="max_time_stopped" default="1"/>
+     <arg name="angular_speed_coefficient" default="0.01"/>
+     <include file="$(find ld06_lidar)/launch/ld06.launch" pass_all_args="false" />
+     <node pkg="laser_filters" type="scan_to_cloud_filter_chain" output="screen" name="laser_filter">
+         <param name="target_frame" value="laser" />
+         <rosparam command="load" file="$(find following)/lidar_config/angular_bounds.yaml"/>
+     </node>
+     <node pkg="laser_filters" type="scan_to_scan_filter_chain" output="screen" name="laser_filter2">
+         <param name="target_frame" value="laser" />
+         <rosparam command="load" file="$(find following)/lidar_config/angular_bounds.yaml"/>
+     </node>
+
+    <node name="follow_me" pkg="bt_follow" type="follow.py" output="screen">
+        <rosparam param="a_list">[1, 2, 3, 4]</rosparam>
+        <param name="input_image_info_topic" value="$(arg input_image_info_topic)"/>
+        <param name="angular_pid" value="$(arg angular_pid)"/>
+        <param name="deceleration_pid" value="$(arg deceleration_pid)"/>
+        <param name="max_speed" value="$(arg max_speed)"/>
+        <param name="acceleration_step" value="$(arg acceleration_step)"/>
+        <param name="deceleration_step" value="$(arg deceleration_step)"/>
+        <param name="max_time_without_object" value="$(arg max_time_without_object)"/>
+        <param name="max_time_stopped" value="$(arg max_time_stopped)"/>
+        <param name="angular_speed_coefficient" value="$(arg angular_speed_coefficient)"/>
+    </node>
+</launch>

@@ -1,0 +1,44 @@
+<launch>
+
+
+    <include file="$(find raspicam_node)/launch/camerav2_410x308_30fps.launch" pass_all_args="false" />
+    <include file="$(find detect_objects)/launch/detect_objects.launch" pass_all_args="false" />
+
+    <!-- SORT tracking iou_threshold -->
+    <arg name="iou_threshold" default="0.3"/>
+    <!-- input image topic -->
+    <arg name="input_image_topic" default="/raspicam_node/image/compressed"/>
+    <!-- input camera info topic -->
+    <arg name="input_image_info_topic" default="/raspicam_node/camera_info"/>
+    <!-- input detected object array topic -->
+    <arg name="input_BB_topic" default="/detect_objects/detection_array"/>
+    <!-- output image topic -->
+    <arg name="output_image_topic" default="track/image/compressed"/>
+    <!-- output tracked object array topic-->
+    <arg name="output_BB_topic" default="track/BB"/>
+    <!-- minimum bounding box area in pixels to start tracking -->
+    <arg name="min_detection_area" default="5000"/>
+    <!-- number of iterations the tracker persists (kalman predictions) if no detections are associated with it -->
+    <arg name="untracked_perseverance" default="10"/>
+    <!-- minimum successful detection/tracker associations before tracker becomes active -->
+    <arg name="min_detection_hits" default="1"/>
+    <!-- number of iterations before the tracker gets deleted if no detection is associated with it -->
+    <arg name="max_untracked_age" default="10"/>
+    <!-- min aspect ratio (bounding_box_width / bounding_box_height) to start tracking -->
+    <arg name="aspect_ratio" default="1"/>
+
+    <node name="ur_object_tracking" pkg="ur_object_tracking" type="multiple_object_tracking.py">
+        <param name="input_image_info_topic" value="$(arg input_image_info_topic)"/>
+        <param name="iou_threshold" value="$(arg iou_threshold)"/>
+        <param name="input_image_topic" value="$(arg input_image_topic)"/>
+        <param name="input_BB_topic" value="$(arg input_BB_topic)"/>
+        <param name="output_image_topic" value="$(arg output_image_topic)"/>
+        <param name="output_BB_topic" value="$(arg output_BB_topic)"/>
+        <param name="min_detection_area" value="$(arg min_detection_area)"/>
+        <param name="untracked_perseverance" value="$(arg untracked_perseverance)"/>
+        <param name="min_detection_hits" value="$(arg min_detection_hits)"/>
+        <param name="max_untracked_age" value="$(arg max_untracked_age)"/>
+        <param name="aspect_ratio" value="$(arg aspect_ratio)"/>
+    </node>
+
+</launch>

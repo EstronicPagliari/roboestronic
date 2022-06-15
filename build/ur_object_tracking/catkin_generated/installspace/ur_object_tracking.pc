@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/catkin_ws/install
+
+Name: ur_object_tracking
+Description: Description of ur_object_tracking
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib -ldetect_objects
+Requires: rospy std_msgs message_generation ur_vision_msgs sensor_msgs

@@ -1,0 +1,24 @@
+<launch>
+    <arg name="tracker_name" default="medianflow"/>
+    <arg name="camera_resolution" default="410x308"/>
+    <arg name="fail_threshold" default="5"/>
+    <arg name="IOU_threshold" default="0.4"/>
+    <arg name="input_image_topic" default="/raspicam_node/image/compressed"/>
+    <arg name="input_BB_topic" default="/detect_objects/detection_array"/>
+    <arg name="output_image_topic" default="track/image/compressed"/>
+    <arg name="output_BB_topic" default="track/BB"/>
+    <arg name="output_video" default=""/>
+
+
+    <node name="ur_object_tracking" pkg="ur_object_tracking" type="single_object_tracking.py" output="screen">
+        <param name="tracker_name" value="$(arg tracker_name)"/>
+        <param name="camera_resolution" value="$(arg camera_resolution)"/>
+        <param name="fail_threshold" value="$(arg fail_threshold)"/>
+        <param name="IOU_threshold" value="$(arg IOU_threshold)"/>
+        <param name="input_image_topic" value="$(arg input_image_topic)"/>
+        <param name="input_BB_topic" value="$(arg input_BB_topic)"/>
+        <param name="output_image_topic" value="$(arg output_image_topic)"/>
+        <param name="output_BB_topic" value="$(arg output_BB_topic)"/>
+        <param name="output_video" value="$(arg output_video)"/>
+    </node>
+</launch>

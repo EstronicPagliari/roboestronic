@@ -1,0 +1,8 @@
+<launch>
+<arg name="lidar_port" default="/dev/ttyUSB1"/>
+<node name="ld06_lidar" pkg="ld06_lidar" type="ld06_lidar" args="LD06" output="screen" >
+    <param name="serial_port" value="$(arg lidar_port)"/>
+    <param name="lidar_frame" value="laser"/>
+    <remap from="/LiDAR/LD06" to="scan"/>
+ </node>
+</launch>

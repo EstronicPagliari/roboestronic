@@ -1,0 +1,7 @@
+set(following_SETUP_PY_SETUP_MODULE "distutils.core")
+set(following_SETUP_PY_VERSION "0.2.0")
+set(following_SETUP_PY_SCRIPTS "")
+set(following_SETUP_PY_PACKAGES "following")
+set(following_SETUP_PY_PACKAGE_DIRS "src/following")
+set(following_SETUP_PY_MODULES "")
+set(following_SETUP_PY_MODULE_DIRS "")

@@ -1,0 +1,2 @@
+set(ur_vision_msgs_MESSAGE_FILES "/home/ubuntu/catkin_ws/src/ur_vision_msgs/msg/BoundingBox2D.msg;/home/ubuntu/catkin_ws/src/ur_vision_msgs/msg/DetectedObject2D.msg;/home/ubuntu/catkin_ws/src/ur_vision_msgs/msg/DetectedObjectArray2D.msg;/home/ubuntu/catkin_ws/src/ur_vision_msgs/msg/TrackedObject2D.msg;/home/ubuntu/catkin_ws/src/ur_vision_msgs/msg/TrackedObjectArray2D.msg")
+set(ur_vision_msgs_SERVICE_FILES "")

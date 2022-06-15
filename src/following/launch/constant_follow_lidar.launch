@@ -1,0 +1,45 @@
+<launch>
+
+     <include file="$(find ur_object_tracking)/launch/all_tracking.launch" pass_all_args="false" />
+     <include file="$(find ld06_lidar)/launch/ld06.launch" pass_all_args="false" />
+     <node pkg="laser_filters" type="scan_to_cloud_filter_chain" output="screen" name="laser_filter">
+         <param name="target_frame" value="laser" />
+         <rosparam command="load" file="$(find following)/lidar_config/angular_bounds.yaml"/>
+     </node>
+
+     <!-- raspicam camera info topic -->
+     <arg name="input_image_info_topic" default="/raspicam_node/camera_info"/>
+     <!-- PID parameters for angular velocity (kp, ki, kd) -->
+     <arg name="angular_pid" default="0.3, 0.0, 0.0"/>
+     <!-- max robot velocity in m/s -->
+     <arg name="max_speed" default="1"/>
+     <!-- max robot velocity increase per iteration. (acceleration_step * rospy.rate) m/s² | default rospy.rate = 20 -->
+     <arg name="acceleration_step" default="0.15"/>
+     <!-- max robot velocity decrease per iteration. (deceleration_step * rospy.rate) m/s² | default rospy.rate = 20 -->
+     <arg name="deceleration_step" default="0.25"/>
+     <!-- max time without any tracked object before following cancels -->
+     <arg name="max_time_without_object" default="5"/>
+     <!-- max time the robot is stationary before following cancels -->
+     <arg name="max_time_stopped" default="10"/>
+     <!-- angular speed coefficient -->
+     <arg name="angular_speed_coefficient" default="0.02"/>
+     <!-- re-acquisition iou threshold.  -->
+     <arg name="iou" default="0.3"/>
+
+
+
+    <node name="following" pkg="following" type="follow.py" output="screen">
+        <param name="input_image_info_topic" value="$(arg input_image_info_topic)"/>
+        <param name="angular_pid" value="$(arg angular_pid)"/>
+        <param name="max_speed" value="$(arg max_speed)"/>
+        <param name="acceleration_step" value="$(arg acceleration_step)"/>
+        <param name="deceleration_step" value="$(arg deceleration_step)"/>
+        <param name="max_time_without_object" value="$(arg max_time_without_object)"/>
+        <param name="max_time_stopped" value="$(arg max_time_stopped)"/>
+        <param name="angular_speed_coefficient" value="$(arg angular_speed_coefficient)"/>
+        <param name="iou" value="$(arg iou)"/>
+    </node>
+    <node name="follow_client" pkg="following" type="follow_client.py" output="screen">
+    </node>
+
+</launch>

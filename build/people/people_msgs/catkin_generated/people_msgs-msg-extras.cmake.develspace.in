@@ -1,0 +1,2 @@
+set(people_msgs_MESSAGE_FILES "/home/ubuntu/catkin_ws/src/people/people_msgs/msg/People.msg;/home/ubuntu/catkin_ws/src/people/people_msgs/msg/Person.msg;/home/ubuntu/catkin_ws/src/people/people_msgs/msg/PersonStamped.msg;/home/ubuntu/catkin_ws/src/people/people_msgs/msg/PositionMeasurement.msg;/home/ubuntu/catkin_ws/src/people/people_msgs/msg/PositionMeasurementArray.msg")
+set(people_msgs_SERVICE_FILES "")
